@@ -1,0 +1,45 @@
+import { themes } from "mdx-deck";
+
+import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+
+import customTheme from "./custom-theme";
+
+import { Thing } from "./thing.mdx";
+
+# Hello <Thing name="hans"/>
+
+---
+
+## This is my deck
+
+---
+
+## The End
+
+<CodeSurfer theme={themes.script}>
+
+```js 1 title="Title" subtitle="Look at the first line"
+console.log(1);
+console.log(2);
+console.log(3);
+```
+
+```js 2 title="Title" subtitle="and now the second"
+console.log(1);
+console.log(2);
+console.log(3);
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js
+console.log(1);
+console.log(2);
+console.log(3);
+```
+
+</CodeSurfer>
