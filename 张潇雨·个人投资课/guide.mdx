@@ -1,33 +1,48 @@
-import { themes } from "mdx-deck";
+import { vsDark } from "@code-surfer/themes";
 
 import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
 
 import customTheme from "./custom-theme";
 
-import { Thing } from "./thing.mdx";
+import Picture from "../components/image.js";
 
-# Hello <Thing name="hans"/>
+import imgUrl from "../images/path1.jpg";
+
+export const theme = customTheme;
+
+<Head>这一次，知识就是财富</Head>
+
+## 导读
 
 ---
 
-## This is my deck
+<Picture
+  src={imgUrl}
+  css={{ width: "543px", height: "auto", margin: "0 auto" }}
+/>
+
+## 这一次，知识就是财富
 
 ---
 
-## The End
+<CodeSurfer theme={vsDark}>
 
-<CodeSurfer theme={themes.script}>
+```js
+gdgdgdf;
+```
 
-```js 1 title="Title" subtitle="Look at the first line"
+```js 1
 console.log(1);
 console.log(2);
 console.log(3);
 ```
 
-```js 2 title="Title" subtitle="and now the second"
+```js
 console.log(1);
 console.log(2);
 console.log(3);
+console.log(4);
+console.log(5);
 ```
 
 </CodeSurfer>

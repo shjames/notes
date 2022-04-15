@@ -1,7 +1,7 @@
 // custom-theme.js
 export default {
     colors: {
-        background: "#222",
+        background: "#ff6b00",
         text: "#ddd",
         primary: "#a66"
     },
@@ -9,7 +9,9 @@ export default {
         CodeSurfer: {
             pre: {
                 color: "text",
-                backgroundColor: "background"
+                // background: `url(${backgroundUrl}) no-repeat`,
+                // backgroundSize: "100%,auto",
+                backgroundColor: "background",
             },
             code: {
                 color: "text",
