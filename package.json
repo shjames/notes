@@ -14,6 +14,7 @@
     "promises-aplus-tests": "^2.1.2"
   },
   "dependencies": {
+    "event-source-polyfill": "^1.0.26",
     "mdx-deck": "^4.1.1"
   }
 }
