@@ -7,7 +7,7 @@
     "start": "mdx-deck deck.mdx",
     "build": "mdx-deck build deck.mdx",
     "test": "node test",
-    "demo": "mdx-deck 张潇雨·个人投资课/guide.mdx"
+    "demo": "mdx-deck git/git-rebase.mdx"
   },
   "devDependencies": {
     "code-surfer": "^3.1.1",

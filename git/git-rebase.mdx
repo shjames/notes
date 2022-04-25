@@ -1,1 +1,398 @@
+import { vsDark, duotoneLight } from "@code-surfer/themes";
+
+import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+
+import Picture from "../components/image.js";
+
+import customTheme from "./custom-theme";
+
+import imgUrl from "../images/fork.png";
+
+import mr from "../images/mr.png";
+
+import branch from "../images/branch.png";
+
+import branch1 from "../images/branch1.png";
+
+import branch2 from "../images/branch2.png";
+
+import h1Style from "./h1Style.js";
+
 ## git rebaes 命令使用
+
+---
+
+## 使用场景
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:2
+所有开发人员开发前，首先要把上游仓库的东西 fork 到自己的仓库;
+然后再在本地 clone 下自己仓库的代码，然后新建分支去进行功能开发;
+开发完后，把代码提交到本地远程仓库，然后再使用 git rebaes 把本地的提交历史迁移到远程上游仓库上;
+最后再 push 到自己的远程仓库;
+最后给远程上游仓库新建一个 Merge Requests 请求;
+由于是 git rebase 过的，所以上游仓库只要进行快速合并（merge）即可;
+```
+
+```js 3:4
+所有开发人员开发前，首先要把上游仓库的东西 fork 到自己的仓库;
+然后再在本地 clone 下自己仓库的代码，然后新建分支去进行功能开发;
+开发完后，把代码提交到本地远程仓库，然后再使用 git rebaes 把本地的提交历史迁移到远程上游仓库上;
+最后再 push 到自己的远程仓库;
+最后给远程上游仓库新建一个 Merge Requests 请求;
+由于是 git rebase 过的，所以上游仓库只要进行快速合并（merge）即可;
+```
+
+```js 5:6
+所以开发人员开发前，首先要把上游仓库的东西 fork 到自己的仓库;
+然后再在本地 clone 下自己仓库的代码，然后新建分支去进行功能开发;
+开发完后，把代码提交到本地远程仓库，然后再使用 git rebaes 把本地的提交历史迁移到远程上游仓库上;
+最后再 push 到自己的远程仓库;
+最后给远程上游仓库新建一个 Merge Requests 请求;
+由于是 git rebase 过的，所以上游仓库只要进行快速合并（merge）即可;
+```
+
+</CodeSurfer>
+
+---
+
+## 具体的步骤及命令
+
+---
+
+#### 1，fork 上游仓库的项目到自己的仓库;
+
+---
+
+<Picture
+  src={imgUrl}
+  css={{ width: "100%", height: "auto", margin: "0 auto" }}
+/>
+
+---
+
+<CodeSurfer theme={customTheme} >
+
+```js title="拉取fork到自己仓库下的项目"
+git clone  xxx(自己仓库下的地址)
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={customTheme} >
+
+```js title="设置上游仓库"
+git remote add upstream http:xxx原仓库地址
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={customTheme} >
+
+```js title="切换到对应分支，并且同步上游分支代码"
+git checkout <branch>; //切换到对应分支
+git pull upstream <branch> --rebase //同步上游分支代码
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={customTheme} >
+
+```js title="开发功能，提交代码至本地仓库"
+本地进行需求开发；
+git add . ; //把所有修改的代码添加到暂存区
+git commit -m'commit  message' ; //把暂存区代码提交到本地仓库
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={customTheme} >
+
+```js title="把本地开发分支与上游分支进行rebase操作,并推送至远端仓库（fork仓库）下"
+
+git pull upstream  <branch> --rebase ; //本地开发分支与上游分支进行rebase操作
+git push ;//推送至远端仓库（fork仓库）下
+
+```
+
+</CodeSurfer>
+
+---
+
+#### 向上游分支发送一个 Merge Requests 请求
+
+---
+
+<Picture src={mr} css={{ width: "100%", height: "auto", margin: "0 auto" }} />
+
+---
+
+#### 最后上游仓库就可以对刚刚的 MR 进行审核合并工作了
+
+---
+
+## git rebase 命令的详细介绍（参考至一篇写的比较好的文章）
+
+---
+
+<CodeSurfer theme={customTheme} >
+
+```js title="参考文章地址"
+https://juejin.cn/post/6933247925057224712
+```
+
+</CodeSurfer>
+
+---
+
+## git rebase 原理
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1
+rebase操作最主要的作用就是使commit的提交历史变得干净整洁（在graph中呈一条前进的直线）;
+并且不会产生额外的提交，它相当于是把产生分叉的commit进行移植到目标分支上;
+```
+
+```js 2
+rebase操作最主要的作用就是使commit的提交历史变得干净整洁（在graph中呈一条前进的直线）;
+并且不会产生额外的提交，它相当于是把产生分叉的commit进行移植到目标分支上;
+```
+
+</CodeSurfer>
+
+---
+
+## rebase 和 merge 的区别
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:2 title="rebase 和 merge 的区别"
+rebase（变基），顾名思义，就是改变基点的意思，在具体的操作中;
+就是改变对应commit串的父基点;
+```
+
+```js 1 title="rebase 和 merge 的区别"
+具体图示分析如下;
+```
+
+```js 1 title="rebase 和 merge 的区别"
+假设我们现在有Master主分支和Feature开发分支组成的日常开发环境;
+```
+
+</CodeSurfer>
+
+---
+
+<Picture
+  src={branch}
+  css={{ width: "100%", height: "auto", margin: "0 auto" }}
+/>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:2 title="rebase 和 merge 的区别"
+如上图,在基于commit 2的Feature分支上进行新功能的开发时;
+Master分支中有一些新的提交，需要在自己的分支上同步Master的更新;
+```
+
+```js 1:2 title="rebase 和 merge 的区别"
+我们经常会使用git pull(git pull = git fetch + git merge)去拉取远程的代码;
+也就是说，使用git pull 拉取远程代码，其实就是在使用merge进行合并代码;
+```
+
+```js 1:2 title="rebase 和 merge 的区别"
+git checkout feature;//切换到feature分支
+(feature)git merge master; // 在feature 分支上合并master分支的代码
+```
+
+```js 1 title="rebase 和 merge 的区别"
+操作完以后，分支示意图如下;
+```
+
+</CodeSurfer>
+
+---
+
+<Picture
+  src={branch1}
+  css={{ width: "100%", height: "auto", margin: "0 auto" }}
+/>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:2 title="rebase 和 merge 的区别"
+正如上图所看到的，merge命令会产生一个新的merge commit(图中的commit8，merge操作自动生成);
+优点就是可以知道在哪里对代码进行了merge操作;
+缺点就是产生一条没有多大实际意义的commit记录;
+如果多次进行merge操作，就是产生多条这样的commit;
+merge操作会让两个分支间产生交叉、形成“钻石链”。这会让我们的git graph变得凌乱，不易管理和维护;
+```
+
+```js 3:4 title="rebase 和 merge 的区别"
+优点就是可以知道在哪里对代码进行了merge操作;
+缺点就是产生一条没有多大实际意义的commit记录;
+如果多次进行merge操作，就是产生多条这样的commit;
+merge操作会让两个分支间产生交叉、形成“钻石链”。这会让我们的git graph变得凌乱，不易管理和维护;
+```
+
+ </CodeSurfer>
+
+---
+
+## 使用 rebase 操作
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1 title="rebase 和 merge 的区别"
+先再来看看一开始的那种分支示意图;
+```
+
+ </CodeSurfer>
+
+---
+
+<Picture
+  src={branch}
+  css={{ width: "100%", height: "auto", margin: "0 auto" }}
+/>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1 title="rebase 和 merge 的区别"
+如果在同样的情况下，我们使用rease操作，把feature分支rebase到master分支上;
+```
+
+```js 1:2 title="rebase 和 merge 的区别"
+git checkout feature;
+git rebase master(或者使用git pull upstream master --rebase);
+```
+
+ </CodeSurfer>
+
+---
+
+#### 我们将得到下面的分支示意图
+
+---
+
+<Picture
+  src={branch2}
+  css={{ width: "100%", height: "auto", margin: "0 auto" }}
+/>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1 title="rebase 和 merge 的区别"
+可以很清楚地看到，使用rebase命令，不会使commit历史出现分叉，而是一条前进的直线;
+```
+
+```js 1:2 title="rebase 和 merge 的区别"
+它会找出两个分支的共同父commit(图中就是commit2);
+然后在目标分支(master)的最新commit后面，把从commit2开始出现分叉的;
+feature分支特有的commit，全部迁移到目标分支(master)上;
+其实说白了，就是找出feature分支上新增的commit，迁移到master分支最新的commit基点上;
+只不过被迁移的那些commit的commit被改变了，虽然看起来像是复制;
+```
+
+```js 3:5 title="rebase 和 merge 的区别"
+它会找出两个分支的共同父commit(图中就是commit2);
+然后在目标分支(master)的最新commit后面，把从commit2开始出现分叉的;
+feature分支特有的commit，全部迁移到目标分支(master)上;
+其实说白了，就是找出feature分支上新增的commit，迁移到master分支最新的commit基点上;
+只不过被迁移的那些commit的commit id 被改变了(图中的3'、4'、5')，虽然看起来像是复制;
+```
+
+ </CodeSurfer>
+
+---
+
+## 优缺点总结：
+
+---
+
+### Git 官网文档对 rebase 操作的优点的阐述如下：
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:6 title="rebase 操作的优点"
+
+这两种整合方法的最终结果没有任何区别，但是变基使得提交历史更加整洁;
+
+你在查看一个经过变基(rebase)的分支的历史记录时会发现，尽管实际的开发工作是并行的， 但它们看上去就像是串行的一样，提交历史是一条直线没有分叉;
+
+```
+
+ </CodeSurfer>
+
+---
+
+### 使用 rebase 分支的注意事项
+
+---
+
+## rebase 会消除提交历史、甚至影响别人——黄金法则
+
+---
+
+<h1 style={h1Style}>
+  请遵循 Git 官方文档中提出并强调的黄金法则：永远不要在公用的分支上 rebase
+  别的分支。
+</h1>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:6 title="使用rebase要遵循的原则"
+
+说白了就是，只要把 rebase 的使用范围限制在自己的开发分支内，就不会出现影响到他人的情况;
+
+在遵循“黄金法则”的前提下，rebase 才能成为我们对 commit 历史进行优化、精简 commit 提交的利器;
+
+```
+
+ </CodeSurfer>
+
+---
+
+<CodeSurfer theme={customTheme}>
+
+```js 1:9 title="使用rebase要遵循的原则"
+
+如果你遵循这条金科玉律，就不会出差错;
+
+否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你；
+
+总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史， 从不对已推送至别处的提交执行变基操作;
+
+```
+
+ </CodeSurfer>
